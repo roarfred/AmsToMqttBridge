@@ -10,11 +10,10 @@ cache:
 
 env:
     - PLATFORMIO_CI_SRC=Code/Arduino/HanReader/examples/read_han_simple/read_han_simple.ino
-    - PLATFORMIO_CI_SRC=Code/Arduino/HanReader/src/Kaifa.h
 
 install:
     - pip install -U platformio
     - platformio update
 
 script:
-    - platformio ci --board=nodemcuv2
+    - platformio ci --lib="." --board=nodemcuv2
