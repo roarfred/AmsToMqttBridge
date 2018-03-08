@@ -2,8 +2,19 @@ language: python
 python:
     - "2.7"
 
+# Cache PlatformIO packages using Travis CI container-based infrastructure
+sudo: false
+cache:
+    directories:
+        - "~/.platformio"
+
+env:
+    - PLATFORMIO_CI_SRC=HanReader/examples/read_han_simple/read_han_simple.ino
+    - PLATFORMIO_CI_SRC=HanReader/src/Kaifa.h
+
 install:
-    - python -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+    - pip install -U platformio
+    - platformio update
 
 script:
-    - platformio ci KaifaTest --board=esp01
+    - platformio ci --board=nodemcuv2
